@@ -113,7 +113,7 @@ myLinkedList.insert(0, 123)
 
 console.log(myLinkedList.length)
 // myLinkedList.insert(7, 999)
-console.log(myLinkedList.tail)
+// console.log(myLinkedList.tail)
 console.log(myLinkedList.printLinkedListArray())
-console.log("test")
+
 // node LinkedList.js
