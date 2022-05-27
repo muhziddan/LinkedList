@@ -82,6 +82,31 @@ class LinkedList {
         return this
     }
 
+
+
+    delete(index) {
+        if (index === 0) {
+            this.head = this.head.next
+            this.length--
+            return this
+        } else if (index < 0 || index > this.length - 1) {
+            console.log("Index out of bonds")
+            return "Index out of bonds"
+        }
+
+        const leadNode = this.traverseToIndex(index - 1)
+        if (index === this.length - 1) {
+            leadNode.next = null
+            this.tail = leadNode
+            this.length--
+            return this
+        }
+        const destinationNode = leadNode.next
+        leadNode.next = destinationNode.next
+        this.length--
+        return this
+    }
+
     traverseToIndex(index) {// the iterate/traverse function to the node
         let counter = 0
         let currentNode = this.head
@@ -108,12 +133,13 @@ myLinkedList.append(50)
 myLinkedList.append(35)
 myLinkedList.append(40)
 myLinkedList.prepend(11)
-myLinkedList.insert(2, 77)
-myLinkedList.insert(0, 123)
+// myLinkedList.insert(2, 77)
+// myLinkedList.insert(0, 123)
+myLinkedList.delete(4)
 
 console.log(myLinkedList.length)
 // myLinkedList.insert(7, 999)
-// console.log(myLinkedList.tail)
-console.log(myLinkedList.printLinkedListArray())
+console.log(myLinkedList.tail)
+// console.log(myLinkedList.printLinkedListArray())
 
 // node LinkedList.js
