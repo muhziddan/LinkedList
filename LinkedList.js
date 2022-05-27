@@ -82,8 +82,6 @@ class LinkedList {
         return this
     }
 
-
-
     delete(index) {
         if (index === 0) {
             this.head = this.head.next
