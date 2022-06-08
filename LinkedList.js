@@ -19,7 +19,7 @@
 
 class MyNode {// to reduce boiler code, bcz in most of every method in linked list is making a new node
     constructor(value) {
-        this.value = value,
+        this.value = value
         this.next = null
     }
 }
@@ -67,7 +67,7 @@ class LinkedList {
             return "index out of bonds"
         }
         // iterate/traverse until one step before reaching the destination index
-        const leadNode = this.traverseToIndex(index-1)
+        const leadNode = this.traverseToIndex(index - 1)
         // reference the node in the destination index before changing
         const destination = leadNode.next
         // create new Node
@@ -105,6 +105,49 @@ class LinkedList {
         return this
     }
 
+    reverseList() {// O(n) , space O(n)
+        if (this.length === 1) {
+            return this
+        }
+
+        const valueHolder = []
+        let currentNode = this.head
+        let newNode = this.head
+        while (currentNode !== null) {
+            valueHolder.push(currentNode.value)
+            currentNode = currentNode.next
+        }
+
+        for (let i = valueHolder.length - 1; i >= 0; i--) {
+            newNode.value = valueHolder[i]
+            newNode = newNode.next
+        }
+
+        return this
+    }
+
+    reverse() {// O(n), space O(1)
+        if (this.length === 1) {
+            return this
+        }
+
+        let newHead = this.head
+        let helper = newHead.next
+        this.tail = this.head
+
+        while(helper) {
+            const nextNode = helper.next
+            helper.next = newHead
+            newHead = helper
+            helper = nextNode
+        }
+
+        this.head.next = null
+        this.head = newHead
+
+        return this
+    }
+
     traverseToIndex(index) {// the iterate/traverse function to the node
         let counter = 0
         let currentNode = this.head
@@ -134,10 +177,15 @@ myLinkedList.prepend(11)
 // myLinkedList.insert(2, 77)
 // myLinkedList.insert(0, 123)
 myLinkedList.delete(4)
+myLinkedList.delete(3)
+// myLinkedList.delete(2)
 
 console.log(myLinkedList.length)
 // myLinkedList.insert(7, 999)
-console.log(myLinkedList.tail)
-// console.log(myLinkedList.printLinkedListArray())
+// console.log(myLinkedList.tail)
+console.log(myLinkedList.printLinkedListArray())
+// myLinkedList.reverseList()
+myLinkedList.reverse()
+console.log(myLinkedList.printLinkedListArray())
 
 // node LinkedList.js
